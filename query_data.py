@@ -8,13 +8,13 @@ from get_embedding_function import get_embedding_function
 CHROMA_PATH = "chroma"
 
 PROMPT_TEMPLATE = """
-Answer the question based only on the following context:
+Responde en español la pregunta solo con lo relacionado al siguiente contexto:
 
 {context}
 
 ---
 
-Answer the question based on the above context: {question}
+Responde la pregunta de la forma mas acotada y precisa utilizando solo el contexto de arriba: {question}
 """
 
 
@@ -40,7 +40,7 @@ def query_rag(query_text: str):
     prompt = prompt_template.format(context=context_text, question=query_text)
     # print(prompt)
 
-    model = Ollama(model="llama3")
+    model = Ollama(model="phi3")
     response_text = model.invoke(prompt)
 
     sources = [doc.metadata.get("id", None) for doc, _score in results]

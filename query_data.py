@@ -14,7 +14,11 @@ Responde en español la pregunta solo con lo relacionado al siguiente contexto:
 
 ---
 
-Responde la pregunta de la forma mas acotada y precisa utilizando solo el contexto de arriba: {question}
+Responde la pregunta utilizando solo el contexto de arriba: {question}
+
+---
+
+Agrega despues una respuesta sin necesidad de basarte en el contexto.
 """
 
 
@@ -40,7 +44,7 @@ def query_rag(query_text: str):
     prompt = prompt_template.format(context=context_text, question=query_text)
     # print(prompt)
 
-    model = Ollama(model="phi3")
+    model = Ollama(model="llama3")
     response_text = model.invoke(prompt)
 
     sources = [doc.metadata.get("id", None) for doc, _score in results]

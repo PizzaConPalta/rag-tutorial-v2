@@ -12,14 +12,10 @@ Answer the question based only on the following context:
 
 ---
 
-<<<<<<< Updated upstream
-Answer the question based on the above context: {question}
-=======
 Responde la pregunta utilizando solo el contexto de arriba: {question}
 
 ---
 
->>>>>>> Stashed changes
 """
 
 def query_rag(query_text: str):
@@ -34,7 +30,7 @@ def query_rag(query_text: str):
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format(context=context_text, question=query_text)
 
-    model = Ollama(model="mistral")
+    model = Ollama(model="llama3")
     response_text = model.invoke(prompt)
 
     sources = [doc.metadata.get("id", None) for doc, _score in results]
@@ -42,8 +38,5 @@ def query_rag(query_text: str):
     return formatted_response
 
 if __name__ == "__main__":
-    import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument("query_text", type=str, help="The query text.")
-    args = parser.parse_args()
-    print(query_rag(args.query_text))
+    # pregunta = (ingresar pregunta de la api)
+    print(query_rag(pregunta))

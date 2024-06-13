@@ -8,6 +8,23 @@ from query_data import query_rag
 
 app = Flask(__name__)
 
+
+CHROMA_PATH = "chroma"
+
+PROMPT_TEMPLATE = """
+Answer the question based only on the following context:
+
+{context}
+
+---
+
+Responde la pregunta utilizando solo el contexto de arriba: {question}
+
+---
+
+"""
+
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -26,4 +43,4 @@ def predict():
     return jsonify({"response": response})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=11434)
+    app.run(debug=True, port=5000)
